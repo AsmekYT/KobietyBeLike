@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Czat v2.0</title>
+    <title>KobietyBeLike</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="auth-buttons">
+    <a href="auth/login.html" class="auth-btn">Logowanie</a>
+    <a href="auth/register.html" class="auth-btn register-btn">Rejestracja</a>
+</div>
 <div class="chat-container">
     <div class="chat-header">
-        <h3>Domyśl się 💅</h3>
+        <img src="img/angel.svg" alt="angel icon" class="header-icon" draggable="false">
+        <h2>KobietyBeLike</h2>
+        <img src="img/devil.svg" alt="devil icon" class="header-icon" draggable="false">
     </div>
     <div class="chat-box" id="chatBox">
     </div>
@@ -33,6 +38,12 @@
         </form>
     </div>
 </div>
+
+<footer class="site-footer">
+    <a href="https://asmek.me" target="_blank" rel="noopener noreferrer">
+        © 2025 Asmek page. All rights reserved.
+    </a>
+</footer>
 
 <script src="script.js"></script>
 </body>
