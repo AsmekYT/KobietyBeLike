@@ -14,6 +14,19 @@
     <a href="auth/login.html" class="auth-btn">Logowanie</a>
     <a href="auth/register.html" class="auth-btn register-btn">Rejestracja</a>
 </div>
+
+<div class="user-menu" style="display: none;">
+    <span id="userName"></span>
+    <img src="img/chevron-down.svg" alt="menu" class="menu-arrow" draggable="false">
+    <div class="dropdown-content">
+        <a href="#">Konto</a>
+        <a href="#">API</a>
+        <a href="#">Motywy czatu</a>
+        <a href="#">Ustawienia</a>
+        <a href="#">Ustawienia zaawansowane</a>
+    </div>
+</div>
+
 <div class="chat-container">
     <div class="chat-header">
         <img src="img/angel.svg" alt="angel icon" class="header-icon" draggable="false">
@@ -21,6 +34,12 @@
         <img src="img/devil.svg" alt="devil icon" class="header-icon" draggable="false">
     </div>
     <div class="chat-box" id="chatBox">
+        <div id="start-popup">
+            <div class="popup-content">
+                <p>Aby zacząć rozmowę z "typową" kobietą, wyślij jej jakąś wiadomość</p>
+                <p class="popup-subtext">(przecież nie napisze pierwsza)</p>
+            </div>
+        </div>
     </div>
     <div class="message-wrapper" id="typingIndicator" style="display: none;">
         <div class="message bot-message">
@@ -31,7 +50,7 @@
     </div>
     <div class="chat-input-area">
         <form id="chatForm" class="chat-form">
-            <input type="text" id="userInput" placeholder="Spróbuj zapytać..." autocomplete="off">
+            <input type="text" id="userInput" placeholder="Wyślij wiadomość..." autocomplete="off">
             <button type="submit" class="send-btn">
                 <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M1.101 21.757 23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z"></path></svg>
             </button>

@@ -13,13 +13,19 @@ const chatBox = document.getElementById('chatBox');
 const userInput = document.getElementById('userInput');
 const chatForm = document.getElementById('chatForm');
 const typingIndicator = document.getElementById('typingIndicator');
+const startPopup = document.getElementById('start-popup');
+let isFirstMessage = true;
 
 
 let messageCount = 0;
 
 
 chatForm.addEventListener('submit', (e) => {
-    e.preventDefault(); // Zapobiega przeładowaniu strony
+    e.preventDefault();
+    if (isFirstMessage) {
+        startPopup.classList.add('hidden');
+        isFirstMessage = false;
+    }
     sendMessage();
 });
 
@@ -88,7 +94,51 @@ function hideTypingIndicator() {
     typingIndicator.style.display = 'none';
 }
 
-
+/*
 window.onload = () => {
     addMessage('Czekam...', 'bot-message');
 }
+ */
+
+function parseJwt(token) {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+}
+
+function checkLoginStatus() {
+    const token = localStorage.getItem('authToken');
+    const authButtons = document.querySelector('.auth-buttons');
+    const userMenu = document.querySelector('.user-menu');
+
+    if (token) {
+        const userData = parseJwt(token);
+        if (userData && userData.name) {
+            authButtons.style.display = 'none';
+            userMenu.style.display = 'flex';
+
+            const userNameSpan = document.getElementById('userName');
+            userNameSpan.textContent = userData.name;
+
+            const dropdown = userMenu.querySelector('.dropdown-content');
+            const logoutLink = document.createElement('a');
+            logoutLink.href = '#';
+            logoutLink.textContent = 'Wyloguj';
+            //logoutLink.style.color = '#d93025';
+            logoutLink.id = 'logout-btn';
+            logoutLink.onclick = (e) => {
+                e.preventDefault();
+                localStorage.removeItem('authToken');
+                window.location.reload();
+            };
+            dropdown.appendChild(logoutLink);
+        }
+    } else {
+        authButtons.style.display = 'flex';
+        userMenu.style.display = 'none';
+    }
+}
+
+window.addEventListener('DOMContentLoaded', checkLoginStatus);
